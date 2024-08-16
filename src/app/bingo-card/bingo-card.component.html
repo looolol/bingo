@@ -3,20 +3,24 @@
     <mat-card-title>Bingo Card</mat-card-title>
   </mat-card-header>
 
-  <button mat-raised-button color="primary" (click)="generateNewCard()">Clear Card</button>
+  <!-- Spinner to show loading state -->
+  <mat-progress-spinner *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-spinner>
 
-  <mat-card-content>
-    <div *ngIf="card">
-      <div class="bingo-grid">
-        <div *ngFor="let row of card.grid" class="bingo-row">
-          <div *ngFor="let cell of row" class="bingo-cell">
-            {{ cell.option }}
-          </div>
-        </div>
+  <!-- Clear Card Button -->
+  <button mat-raised-button color="primary"
+          (click)="generateNewCard()"
+          [disabled]="isLoading$ | async">
+    Clear Card
+  </button>
+
+  <!-- Bingo Card Grid -->
+  <div class="bingo-card-container">
+    <div class="bingo-grid">
+      <div class="bingo-cell" *ngFor="let cell of card.grid.flat()">
+        <div class="cell-content">{{ cell.option }}</div>
       </div>
     </div>
-    <div *ngIf="!card">
-      <p>Loading...</p>
-    </div>
-  </mat-card-content>
+  </div>
+
+
 </mat-card>

@@ -1,16 +1,35 @@
+/* Style for the Bingo Card container */
+.bingo-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Style for the Bingo Grid */
 .bingo-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
+  grid-template-rows: repeat(5, 1fr); /* 5 rows with equal height */
+  gap: 1px; /* Gap between cells to show grid lines */
+  width: 650px; /* Increased width to fit larger cells */
+  height: 650px; /* Increased height to fit larger cells */
+  border: 1px solid #ccc; /* Border around the entire grid */
 }
 
-.bingo-row {
-  display: contents;
-}
-
+/* Style for each Bingo Cell */
 .bingo-cell {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-  background-color: #f9f9f9;
+  display: flex;
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  border: 1px solid #ddd; /* Border for each cell */
+  background-color: #f9f9f9; /* Light background color */
+  font-size: 18px; /* Adjust font size if needed */
+  height: 100%; /* Full height of the grid cell */
+  text-align: center; /* Center text horizontally */
+  padding: 10px; /* Padding inside cells */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Display ellipsis for overflow text */
+  white-space: normal; /* Allow text to wrap onto multiple lines */
+  box-sizing: border-box; /* Ensure padding and border are included in cell size */
 }

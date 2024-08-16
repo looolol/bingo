@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BingoService } from '../services/bingo.service';
 import {MaterialModule} from "../material/material.module";
 import {Card} from "../models/card.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-bingo-card',
@@ -13,9 +14,12 @@ import {Card} from "../models/card.model";
   styleUrls: ['./bingo-card.component.scss']
 })
 export class BingoCardComponent implements OnInit {
-  card: Card | null = null;
+  card!: Card;
+  isLoading$: Observable<boolean>;
 
-  constructor(private bingoService: BingoService) { }
+  constructor(private bingoService: BingoService) {
+    this.isLoading$ = this.bingoService.loading$;
+  }
 
   ngOnInit(): void {
     this.loadCard();

@@ -10,6 +10,7 @@ import { MatTableModule} from "@angular/material/table";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 const ngModules = [
   CommonModule,
@@ -24,6 +25,7 @@ const ngModules = [
   MatProgressSpinnerModule,
   MatDialogModule,
   MatPaginatorModule,
+  MatGridListModule,
 ];
 
 @NgModule({
