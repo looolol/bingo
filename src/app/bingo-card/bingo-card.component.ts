@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BingoService } from '../services/bingo.service';
 import {MaterialModule} from "../material/material.module";
-import {Card} from "../models/card.model";
+import {Card, Cell} from "../models/card.model";
 import {Observable} from "rxjs";
 
 @Component({
@@ -35,6 +35,13 @@ export class BingoCardComponent implements OnInit {
     this.bingoService.generateBingoCard().subscribe(card => {
       this.card = card;
     });
+  }
+
+  toggleCell(cell: Cell): void {
+    if (cell.clickable) {
+      cell.marked = !cell.marked;
+      this.bingoService.saveBingoCard(this.card);
+    }
   }
 }
 

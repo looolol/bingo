@@ -121,10 +121,15 @@ export class BingoService {
   private createBingoCard(options: string[]): Card {
     const grid: Cell[][] = [];
     const shuffledOptions = this.shuffleArray(options.slice());
+
     for (let i = 0; i < 5; i++) {
       const row: Cell[] = [];
       for (let j = 0; j < 5; j++) {
-        row.push({ option: shuffledOptions.pop() || '' });
+        if (i === 2 && j === 2) {
+          row.push({option: 'Free Space', marked: true, clickable: false});
+        } else {
+          row.push({option: shuffledOptions.pop() || '', marked: false, clickable: true});
+        }
       }
       grid.push(row);
     }

@@ -15,12 +15,21 @@
 
   <!-- Bingo Card Grid -->
   <div class="bingo-card-container">
-    <div class="bingo-grid">
-      <div class="bingo-cell" *ngFor="let cell of card.grid.flat()">
-        <div class="cell-content">{{ cell.option }}</div>
+    <div class="bingo-card">
+      <!-- BINGO Header Row -->
+      <div class="bingo-header-row">
+        <div *ngFor="let letter of ['B', 'I', 'N', 'G', 'O']" class="bingo-header-cell">
+          {{ letter }}
+        </div>
+      </div>
+      <!-- Bingo Card Rows -->
+      <div *ngFor="let row of card.grid" class="row">
+        <div *ngFor="let cell of row"
+             [ngClass]="{'cell': true, 'marked': cell.marked}"
+             (click)="toggleCell(cell)">
+          {{ cell.option }}
+        </div>
       </div>
     </div>
   </div>
-
-
 </mat-card>

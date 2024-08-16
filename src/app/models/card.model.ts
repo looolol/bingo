@@ -2,6 +2,8 @@
 
 export interface Cell {
   option: string;  // The content of the cell
+  marked?: boolean;
+  clickable: boolean;
 }
 
 export interface Card {

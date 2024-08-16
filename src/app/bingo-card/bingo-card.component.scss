@@ -1,35 +1,76 @@
-/* Style for the Bingo Card container */
 .bingo-card-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  justify-content: center; /* Center the card horizontally */
+  width: 100%; /* Full width of its parent */
 }
 
-/* Style for the Bingo Grid */
-.bingo-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
-  grid-template-rows: repeat(5, 1fr); /* 5 rows with equal height */
-  gap: 1px; /* Gap between cells to show grid lines */
-  width: 650px; /* Increased width to fit larger cells */
-  height: 650px; /* Increased height to fit larger cells */
-  border: 1px solid #ccc; /* Border around the entire grid */
-}
-
-/* Style for each Bingo Cell */
-.bingo-cell {
+.bingo-card {
   display: flex;
+  flex-direction: column; /* Stack rows vertically */
+  width: 100%; /* Full width of its container */
+  max-width: 900px; /* Max width to prevent it from getting too wide */
+  margin: 20px auto; /* Center the grid container horizontally */
+}
+
+.bingo-header-row {
+  display: flex;
+  width: 100%; /* Full width of its container */
+  background-color: #f0f0f0; /* Background color for the header row */
+}
+
+.bingo-header-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* Ensure cells take up equal space */
+  height: 100px; /* Fixed height for uniform header cells */
+  border: 1px solid #ccc; /* Light border for grid lines */
+  box-sizing: border-box; /* Include border in element's total width and height */
+  font-size: 24px; /* Larger font size for header */
+  font-weight: bold; /* Bold text for header */
+  background-color: #e0e0e0; /* Header cell background color */
+  transition: background-color 0.3s;
+  overflow: hidden; /* Hide overflow text */
+  padding: 0 10px; /* Horizontal padding inside cells */
+  white-space: normal; /* Allow text to wrap */
+  line-height: 1.4; /* Line height for better vertical centering */
+  text-align: center; /* Center text horizontally */
+  cursor: pointer; /* Change cursor to indicate clickable element */
+}
+
+.row {
+  display: flex;
+  width: 100%; /* Full width of its container */
+}
+
+.cell {
+  display: flex; /* Use flexbox for centering content */
   align-items: center; /* Center content vertically */
   justify-content: center; /* Center content horizontally */
-  border: 1px solid #ddd; /* Border for each cell */
-  background-color: #f9f9f9; /* Light background color */
-  font-size: 18px; /* Adjust font size if needed */
-  height: 100%; /* Full height of the grid cell */
-  text-align: center; /* Center text horizontally */
-  padding: 10px; /* Padding inside cells */
+  flex: 1; /* Ensure cells take up equal space */
+  height: 100px; /* Fixed height for uniform cells */
+  border: 1px solid #ccc; /* Light border for grid lines */
+  box-sizing: border-box; /* Include border in element's total width and height */
+  font-size: 16px; /* Default font size */
+  background-color: white;
+  transition: background-color 0.3s;
   overflow: hidden; /* Hide overflow text */
-  text-overflow: ellipsis; /* Display ellipsis for overflow text */
-  white-space: normal; /* Allow text to wrap onto multiple lines */
-  box-sizing: border-box; /* Ensure padding and border are included in cell size */
+  padding: 0 10px; /* Horizontal padding inside cells */
+  white-space: normal; /* Allow text to wrap */
+  line-height: 1.4; /* Line height for better vertical centering */
+  text-align: center; /* Center text horizontally */
+  cursor: pointer; /* Change cursor to indicate clickable element */
+}
+
+.cell.marked {
+  background-color: #ff4d4d; /* Bright red for marked cells */
+  color: white; /* White text for contrast */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
+  .cell {
+    font-size: 12px; /* Smaller font size for mobile devices */
+    height: 80px; /* Adjust height for smaller screens */
+  }
 }
