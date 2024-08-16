@@ -20,6 +20,9 @@
   <!-- Spinner to show loading state -->
   <mat-progress-spinner *ngIf="isLoading$ | async" mode="indeterminate"></mat-progress-spinner>
 
+  <!-- Paginator -->
+  <mat-paginator [pageSize]="10" showFirstLastButtons></mat-paginator>
+
   <!-- Options Table -->
   <mat-table [dataSource]="filteredOptions" matSort matPaginator>
 
@@ -49,7 +52,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </mat-table>
 
-  <!-- Paginator -->
-  <mat-paginator [pageSize]="10" showFirstLastButtons></mat-paginator>
 
 </mat-card>
