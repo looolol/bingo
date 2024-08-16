@@ -3,8 +3,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { BingoCardComponent } from './bingo-card/bingo-card.component';
 import { OptionsManagerComponent } from './options-manager/options-manager.component';
-import { MaterialModule } from './material/material.module';
-
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,7 @@ import { MaterialModule } from './material/material.module';
   imports: [
     RouterOutlet,
     RouterLink,
-    MaterialModule,
+    MatToolbarModule,
     HomeComponent,
     BingoCardComponent,
     OptionsManagerComponent,

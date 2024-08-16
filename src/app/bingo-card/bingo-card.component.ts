@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { BingoService } from '../services/bingo.service';
-import {MaterialModule} from "../material/material.module";
 import {Card, Cell} from "../models/card.model";
 import {Observable} from "rxjs";
+import {MatCardModule} from "@angular/material/card";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-bingo-card',
   standalone: true,
   imports: [
-    MaterialModule,
+    CommonModule,
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './bingo-card.component.html',
   styleUrls: ['./bingo-card.component.scss']
