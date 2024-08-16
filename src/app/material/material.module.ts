@@ -6,6 +6,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
+import { MatTableModule} from "@angular/material/table";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 const ngModules = [
   CommonModule,
@@ -16,6 +20,10 @@ const ngModules = [
   MatCardModule,
   MatIconModule,
   MatCardModule,
+  MatTableModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({

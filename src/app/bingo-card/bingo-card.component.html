@@ -2,6 +2,9 @@
   <mat-card-header>
     <mat-card-title>Bingo Card</mat-card-title>
   </mat-card-header>
+
+  <button mat-raised-button color="primary" (click)="generateNewCard()">Clear Card</button>
+
   <mat-card-content>
     <div *ngIf="card">
       <div class="bingo-grid">

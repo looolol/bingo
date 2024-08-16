@@ -18,9 +18,18 @@ export class BingoCardComponent implements OnInit {
   constructor(private bingoService: BingoService) { }
 
   ngOnInit(): void {
+    this.loadCard();
+  }
+
+  loadCard(): void {
     this.bingoService.getBingoCard().subscribe(card => {
       this.card = card;
-      this.bingoService.saveBingoCard(card); // Save the generated card to local storage
+    });
+  }
+
+  generateNewCard():void {
+    this.bingoService.generateBingoCard().subscribe(card => {
+      this.card = card;
     });
   }
 }

@@ -17,5 +17,29 @@ button {
 }
 
 mat-icon {
-  font-size: 20px;
+  font-size: 24px;
+}
+
+button.mat-icon-button {
+  margin-left: 8px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  .search-field {
+    flex-grow: 1; /* Ensures the search field takes up remaining space */
+  }
+
+  .reverse-sort-button {
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+}
+
+.addNewItem {
+  width: auto; /* Regular length */
 }

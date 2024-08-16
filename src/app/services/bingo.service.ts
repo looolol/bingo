@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, doc, getDocs, setDoc, deleteDoc } from '@angular/fire/firestore';
-import {Observable, from, of, tap, catchError} from 'rxjs';
+import {Observable, from, of, tap, catchError, switchMap, BehaviorSubject} from 'rxjs';
 import { map } from 'rxjs/operators';
 import {Card, Cell} from '../models/card.model';
 
@@ -10,24 +10,42 @@ import {Card, Cell} from '../models/card.model';
 export class BingoService {
   private optionsCollection = collection(this.firestore, 'options'); // Firestore collection for options
   private localCardKey = 'bingoCard'; // Local storage key for bingo card
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable();
 
   constructor(private firestore: Firestore) { }
 
   // Get all options from Firestore
   getOptions(): Observable<string[]> {
+    this.loadingSubject.next(true);
     return from(getDocs(this.optionsCollection)).pipe(
       map(snapshot => snapshot.docs.map(doc => doc.data()['option'] as string)),
-      tap(options => console.log('Fetched options:', options)) // Log fetched options
+      tap(options => {
+        console.log('Fetched options:', options); // Log fetched options
+        this.loadingSubject.next(false); // Set loading to false
+      }),
+      catchError(error => {
+        console.error('Error fetching options:', error);
+        this.loadingSubject.next(false); // Set loading to false on error
+        return of([]); // Return an empty array on error
+      })
     );
   }
 
   // Add a new option to Firestore
   addOption(option: string): Observable<void> {
+    this.loadingSubject.next(true);
     const newOptionRef = doc(this.optionsCollection, option); // Use the option value as the document ID
     console.log(`Adding option: ${option}`); // Debugging line
     return from(setDoc(newOptionRef, { option })).pipe(
-      map(() => {
+      tap(() => {
         console.log(`Option added: ${option}`); // Debugging line
+        this.loadingSubject.next(false);
+      }),
+      catchError(error => {
+        console.error('Error adding option:', error);
+        this.loadingSubject.next(false);
+        throw error;
       })
     );
   }
@@ -35,14 +53,17 @@ export class BingoService {
   // Remove an option from Firestore
   // Remove an option from Firestore
   removeOption(option: string): Observable<void> {
+    this.loadingSubject.next(true);
     const optionRef = doc(this.optionsCollection, option);
     console.log(`Removing option: ${option}`); // Debugging line
     return from(deleteDoc(optionRef)).pipe(
-      map(() => {
+      tap(() => {
         console.log(`Option removed: ${option}`); // Debugging line
+        this.loadingSubject.next(false);
       }),
       catchError(error => {
         console.error('Error removing option:', error);
+        this.loadingSubject.next(false);
         throw error;
       })
     );
@@ -50,8 +71,20 @@ export class BingoService {
 
   // Generate a new bingo card
   getBingoCard(): Observable<Card> {
-    return this.getOptions().pipe(
-      map(options => this.generateBingoCard(options))
+    return this.getLocalBingoCard().pipe(
+      switchMap(localCard => {
+        if (localCard) {
+          console.log('Loaded cached bingo card:', localCard);
+          return of(localCard);
+        } else {
+          console.log('No card found in cache. Generating new card.');
+          return this.generateBingoCard();
+        }
+      }),
+      catchError(error => {
+        console.error('Error fetching or generating bingo card:', error);
+        throw error;
+      })
     );
   }
 
@@ -70,7 +103,22 @@ export class BingoService {
     }
   }
 
-  private generateBingoCard(options: string[]): Card {
+  generateBingoCard(): Observable<Card> {
+    return this.getOptions().pipe(
+      switchMap(options => {
+        const newCard = this.createBingoCard(options);
+        this.saveBingoCard(newCard); // Save the new card to local storage
+        console.log('Generated and saved new bingo card:', newCard);
+        return of(newCard);
+      }),
+      catchError(error => {
+        console.error('Error generating bingo card:', error);
+        throw error;
+      })
+    );
+  }
+
+  private createBingoCard(options: string[]): Card {
     const grid: Cell[][] = [];
     const shuffledOptions = this.shuffleArray(options.slice());
     for (let i = 0; i < 5; i++) {
