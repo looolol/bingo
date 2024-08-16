@@ -1,17 +1,27 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { BingoService } from '../services/bingo.service';
 import {FormsModule} from "@angular/forms";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {Observable} from "rxjs";
-import {MatPaginator} from "@angular/material/paginator";
-import {MaterialModule} from "../material/material.module";
+import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import {CommonModule} from "@angular/common";
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-options-manager',
   standalone: true,
   imports: [
-    MaterialModule,
+    CommonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatPaginatorModule,
     FormsModule,
   ],
   providers: [

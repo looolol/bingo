@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
-import {MaterialModule} from "../material/material.module";
+import {MatCardModule} from "@angular/material/card";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    MaterialModule,
+    MatCardModule,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
