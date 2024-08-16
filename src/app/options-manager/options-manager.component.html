@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-title>Manage Bingo Options</mat-card-title>
+  <mat-form-field appearance="fill">
+    <mat-label>New Option</mat-label>
+    <input matInput [(ngModel)]="newOption" placeholder="Add new option">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addOption()">Add Option</button>
+
+  <mat-list>
+    <mat-list-item *ngFor="let option of options">
+      {{ option }}
+      <button mat-icon-button (click)="removeOption(option)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</mat-card>

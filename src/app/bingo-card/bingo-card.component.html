@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Bingo Card</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="card">
+      <div class="bingo-grid">
+        <div *ngFor="let row of card.grid" class="bingo-row">
+          <div *ngFor="let cell of row" class="bingo-cell">
+            {{ cell.option }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!card">
+      <p>Loading...</p>
+    </div>
+  </mat-card-content>
+</mat-card>

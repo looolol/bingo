@@ -1,3 +1,11 @@
-<h1>Bingo</h1>
+<!-- Header of the Application -->
+<mat-toolbar color="primary">
+  <span>Bingo Card Generator</span>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/">Home</a>
+  <a mat-button routerLink="/options-manager">Options Manager</a>
+  <a mat-button routerLink="/bingo-card">Bingo Card</a>
+</mat-toolbar>
 
-<p>Looks like everythings working!</p>
+<!-- Router Outlet for displaying routed components -->
+<router-outlet></router-outlet>
