@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { BingoCardComponent } from './bingo-card/bingo-card.component';
 import { OptionsManagerComponent } from './options-manager/options-manager.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-root',
@@ -12,14 +13,14 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     RouterOutlet,
     RouterLink,
     MatToolbarModule,
+    MatButtonModule,
     HomeComponent,
     BingoCardComponent,
     OptionsManagerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [
-  ]
+  providers: []
 })
 export class AppComponent {
   title = 'bingo';

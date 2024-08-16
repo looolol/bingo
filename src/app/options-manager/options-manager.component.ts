@@ -7,9 +7,11 @@ import {Observable} from "rxjs";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {CommonModule} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
-import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-options-manager',
@@ -17,7 +19,9 @@ import {MatIconModule} from "@angular/material/icon";
   imports: [
     CommonModule,
     MatCardModule,
+    MatButtonModule,
     MatFormFieldModule,
+    MatInputModule,
     MatTableModule,
     MatProgressSpinnerModule,
     MatIconModule,

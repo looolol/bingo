@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
-  { path: 'bingo-card', loadChildren: () => import('./bingo-card/bingo-card.module').then(m => m.BingoCardModule) },
-  { path: 'options-manager', loadChildren: () => import('./options-manager/options-manager.module').then(m => m.OptionsManagerModule) },
+  { path: '', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
+  { path: 'bingo-card', loadComponent: () => import('./bingo-card/bingo-card.component').then(m => m.BingoCardComponent) },
+  { path: 'options-manager', loadComponent: () => import('./options-manager/options-manager.component').then(m => m.OptionsManagerComponent) },
 ];

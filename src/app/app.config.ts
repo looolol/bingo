@@ -9,7 +9,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import {environment} from "../environments/environment";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }),
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
     provideAnimationsAsync(),

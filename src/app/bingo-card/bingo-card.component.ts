@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {MatCardModule} from "@angular/material/card";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {CommonModule} from "@angular/common";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-bingo-card',
@@ -12,7 +13,8 @@ import {CommonModule} from "@angular/common";
   imports: [
     CommonModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule,
   ],
   templateUrl: './bingo-card.component.html',
   styleUrls: ['./bingo-card.component.scss']

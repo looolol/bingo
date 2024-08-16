@@ -25,6 +25,10 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "buildOptimizer": true,
+            "sourceMap": true,
+            "namedChunks": true,
             "inlineStyleLanguage": "scss",
             "assets": [
               {
